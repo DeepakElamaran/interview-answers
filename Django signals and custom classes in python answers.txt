@@ -1,0 +1,44 @@
+Question 1: Are Django signals executed synchronously or asynchronously by default?
+Answer:
+By default, Django signals are executed synchronously.
+
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.contrib.auth.models import User
+import time
+
+@receiver(post_save, sender=User)
+def slow_signal_handler(sender, instance, **kwargs):
+    print(" Signal started")
+    time.sleep(5)  
+    print(" Signal finished")
+
+
+
+
+
+Question 2: Do Django signals run in the same thread as the caller?
+Answer:
+Yes, by default, Django signals run in the same thread as the code that triggers them.
+
+
+
+Question 3: Do Django signals run in the same database transaction as the caller?
+Answer:
+Yes, by default Django signals run within the same database transaction.
+
+
+
+
+
+create a custom Rectangle class in Python
+
+class Rectangle:
+    def __init__(self, length: int, width: int):
+        self.length = length
+        self.width = width
+
+    def __iter__(self):
+        yield {'length': self.length}
+        yield {'width': self.width}
+
